@@ -57,7 +57,7 @@ Start by filling in the following table for the numbers 1:30 manually, to get a 
 
 On paper or using a tool such as [https://excalidraw.com](https://excalidraw.com), create a program flow map for the sequence of if-statements you need to evaluate for fizzbuzz. Add the picture to the folder containing this file, and name the picture flowchart.png. Add the picture to Git and commit/push your changes. 
 
-![Program Flow map for FizzBuzz](flow-chart1.png)
+![Program Flow map for FizzBuzz](Flowchart1.jpg)
 
 
 In the chunk below, write code which will solve this problem for a single value `x`. You should be able to change the value of x at the top of the chunk and still get the correct answer.
