@@ -142,15 +142,14 @@ xx <- 1:30
 yy <- rep(NA, times = 30)
 #FizzBuzz code goes here
 for (i in seq_along(xx)) {
-  yy[i] <- xx[i]  
-  if (yy[i] %% 3 == 0 & yy[i] %% 5 == 0) {
-    y <-'FizzBuzz'
-  } else if (yy[i] %% 3 == 0) {
-    y <-'Fizz'
-  } else if (yy[i] %% 5 == 0) {
-  y <-'Buzz'
+  if (xx[i] %% 3 == 0 & xx[i] %% 5 == 0) {
+    yy <-'FizzBuzz'
+  } else if (xx[i] %% 3 == 0) {
+    yy <-'Fizz'
+  } else if (xx[i] %% 5 == 0) {
+  yy <-'Buzz'
   } else {
-    yy<- xx
+    yy <-xx
   }
 }
 # Printing the results in a data frame
@@ -164,7 +163,6 @@ xx = np.array(range(30)) + 1
 yy = [np.nan]*30
 # FizzBuzz code goes here
 for i in range(len(xx)):
-    yy[i] = xx[i]
     if xx[i] % 3 == 0 and xx[i] % 5 == 0:
         yy='FizzBuzz'
     elif xx[i] % 3 == 0:
@@ -172,7 +170,7 @@ for i in range(len(xx)):
     elif xx[i] % 5 == 0:
         yy='Buzz'
     else:
-      yy[i]=xx[i]
+      yy =xx
 # Printing the results in a data frame
 res = pd.DataFrame({"x": xx, "result": yy})
 res
