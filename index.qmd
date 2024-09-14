@@ -58,44 +58,75 @@ Start by filling in the following table for the numbers 1:30 manually, to get a 
 On paper or using a tool such as [https://excalidraw.com](https://excalidraw.com), create a program flow map for the sequence of if-statements you need to evaluate for fizzbuzz. Add the picture to the folder containing this file, and name the picture flowchart.png. Add the picture to Git and commit/push your changes. 
 
 ![Program Flow map for FizzBuzz](flow-chart1.png)
+
+
 In the chunk below, write code which will solve this problem for a single value `x`. You should be able to change the value of x at the top of the chunk and still get the correct answer.
 
 ```{r solo-fizzbuzz-r, echo = T}
-x <- 3
-
+x <- 5
 # FizzBuzz code goes here
-
+if (x %% 3 == 0 &&  x %% 5 == 0) {
+  print("FizzBuzz")
+  } else if (x %% 3 == 0){
+    print("Fizz")
+    } else if (x %% 5 == 0){
+      print ("Buzz")
+} else{
+  print("x")
+  }
 ```
 
 
 ```{python solo-fizzbuzz-py, echo = T}
 x = 3
-
 # FizzBuzz code goes here
+
+if x % 3 == 0 and x % 5 == 0:
+    print("FizzBuzz")
+elif x % 3 == 0:
+    print("Fizz")
+elif x % 5 == 0:
+    print("Buzz")
+else:
+    print(x)
+
 
 ```
 
 Modify the code above so that the result is stored in a value `y`.
 
 ```{r solo-fizzbuzz-stored-r, echo = T}
-x <- 3
+x <- 15
 y <- NA
 # FizzBuzz code goes here
-
-
-
+  if (x %% 3 == 0 && x %% 5 == 0){
+    y <-'FizzBuzz'
+} else if (y %% 3 == 0){
+    y <-'Fizz'
+} else if (y %% 5 == 0){
+    y <-'Buzz'
+} else {
+  y <- x
+}
 print(paste("For x = ", x, " my code produces ", y, sep = ""))
 ```
 
 
 ```{python solo-fizzbuzz-stored-py, echo = T}
 import numpy as np
-x = 3
+x = 15
 y = np.nan
 # FizzBuzz code goes here
+if y % 3 == 0 and x % 5 == 0:
+    y='FizzBuzz'
+elif y % 3 == 0:
+    y='Fizz'
+elif y % 5 == 0:
+    y='Buzz'
+else:
+    print(y)
 
-
-
+# Print the result message
 print("For x = "+ str(x)+ " my code produces "+ str(y))
 ```
 
@@ -109,10 +140,19 @@ You can copy/paste code from previous chunks to make this chunk easier.
 ```{r vector-fizzbuzz-r, echo = T}
 xx <- 1:30
 yy <- rep(NA, times = 30)
-
-# FizzBuzz code goes here
-
-
+#FizzBuzz code goes here
+for (i in seq_along(xx)) {
+  yy[i] <- xx[i]  
+  if (yy[i] %% 3 == 0 & yy[i] %% 5 == 0) {
+    y <-'FizzBuzz'
+  } else if (yy[i] %% 3 == 0) {
+    y <-'Fizz'
+  } else if (yy[i] %% 5 == 0) {
+  y <-'Buzz'
+  } else {
+    yy<- xx
+  }
+}
 # Printing the results in a data frame
 res <- cbind(x = xx, result = yy)
 res
@@ -122,10 +162,17 @@ res
 import pandas as pd
 xx = np.array(range(30)) + 1
 yy = [np.nan]*30
-
 # FizzBuzz code goes here
-
-
+for i in range(len(xx)):
+    yy[i] = xx[i]
+    if xx[i] % 3 == 0 and xx[i] % 5 == 0:
+        yy='FizzBuzz'
+    elif xx[i] % 3 == 0:
+        yy='Fizz'
+    elif xx[i] % 5 == 0:
+        yy='Buzz'
+    else:
+      yy[i]=xx[i]
 # Printing the results in a data frame
 res = pd.DataFrame({"x": xx, "result": yy})
 res
@@ -136,15 +183,32 @@ res
 In the previous question, you extended your fizzbuzz code to iterate through a vector `xx` and produce a result `yy`. Can you generalize this, writing a function `fizzbuzz` that takes a variable `x` and returns a corresponding fizzbuzzified variable? Your function should be able to handle `x` that is a vector or a scalar value, and should store your solution in `yy`.
 
 ```{r function-fizzbuzz-r}
-xx <- sample(1:100, 10) # get a random xx
+#xx <- sample(1:100, 10)
+#yy <- rep(NA, 10)
+# Define the fizzbuzz function
+# Generate a random vector of numbers
+xx <- sample(1:100, 10) 
 yy <- rep(NA, 10)
-
+# Define the fizzbuzz function
 fizzbuzz <- function(x) {
-  # Your code goes here
+  y <- rep(NA, length(x))
+  for (i in 1:length(x)) { # Loop over the length of the vector
+    if (x[i] %% 3 == 0 & x[i] %% 5 == 0) {
+      y[i]<-'FizzBuzz'
+    } else if (x[i] %% 3 == 0) {
+     y[i]<-'Fizz'
+    } else if (x[i] %% 5 == 0) {
+      y[i]<-'Buzz'
+    } else {
+      y[i] <-(x[i])
+    }
+  }
+  return(y)
 }
 
+# Call the fizzbuzz function with the vector xx
+fizzbuzz(xx)
 yy <- fizzbuzz(x = xx)
-
 # Printing the results in a data frame
 res <- cbind(x = xx, result = yy)
 res
@@ -154,15 +218,19 @@ res
 import pandas as pd
 from random import choices
 xx = np.array(choices(range(100), k = 10)) + 1
-
-
 def fizzbuzz(x):
   y = [np.nan]*len(x) # this just defines something to return
-  # Your code goes here
+  for num in range(len(x)):
+        if x[num] % 3 == 0 and x[num] % 5 == 0:
+          y[num]='FizzBuzz'
+        elif x[num] % 3 == 0:
+            y[num]='Fizz'
+        elif x[num] % 5 == 0:
+            y[num]='Buzz'
+        else:
+           y[num]=x[num]
   return y
-
 yy = fizzbuzz(x = xx)
-
 # Printing the results in a data frame
 res = pd.DataFrame({"x": xx, "result": yy})
 res
@@ -196,9 +264,21 @@ xx <- sample(1:100, 10) # get a random xx
 yy <- rep(NA, 10)
 
 fizzbuzz <- function(x) {
-  # Your code goes here
-}
-
+  stopifnot(is.numeric(x))
+ y <- rep(NA, length(x))
+  for (i in 1:length(x)) { # Loop over the length of the vector
+    if (x[i] %% 3 == 0 & x[i] %% 5 == 0) {
+      y[i]<-'FizzBuzz'
+    } else if (x[i] %% 3 == 0) {
+     y[i]<-'Fizz'
+    } else if (x[i] %% 5 == 0) {
+      y[i]<-'Buzz'
+    } else {
+      y[i] <-(x[i])
+    }
+  }
+  return(y)
+}  
 yy <- fizzbuzz(x = xx)
 
 # Printing the results in a data frame
@@ -210,13 +290,21 @@ res
 import pandas as pd
 from random import choices
 xx = np.array(choices(range(100), k = 10)) + 1
-
-
 def fizzbuzz(x):
   y = [np.nan]*len(x) # this just defines something to return
-  # Your code goes here
+  try: 
+    for num in range(len(x)):
+          if x[num] % 3 == 0 and x[num] % 5 == 0:
+            y[num]='FizzBuzz'
+          elif x[num] % 3 == 0:
+              y[num]='Fizz'
+          elif x[num] % 5 == 0:
+              y[num]='Buzz'
+          else:
+             y[num]=x[num]
+  except:
+    print("error")
   return y
-
 yy = fizzbuzz(x = xx)
 
 # Printing the results in a data frame
