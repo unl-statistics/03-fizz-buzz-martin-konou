@@ -141,15 +141,15 @@ You can copy/paste code from previous chunks to make this chunk easier.
 xx <- 1:30
 yy <- rep(NA, times = 30)
 #FizzBuzz code goes here
-for (i in seq_along(xx)) {
-  if (xx[i] %% 3 == 0 & xx[i] %% 5 == 0) {
-    yy <-'FizzBuzz'
+for (i in 1:length(xx)) {
+  if (xx[i] %% 3 == 0 && xx[i] %% 5 == 0) {
+    yy[i]<-'FizzBuzz'
   } else if (xx[i] %% 3 == 0) {
-    yy <-'Fizz'
+    yy[i] <-'Fizz'
   } else if (xx[i] %% 5 == 0) {
-  yy <-'Buzz'
+  yy[i] <-'Buzz'
   } else {
-    yy <-xx
+    yy[i] <-xx[i]
   }
 }
 # Printing the results in a data frame
@@ -164,13 +164,13 @@ yy = [np.nan]*30
 # FizzBuzz code goes here
 for i in range(len(xx)):
     if xx[i] % 3 == 0 and xx[i] % 5 == 0:
-        yy='FizzBuzz'
+        yy[i]='FizzBuzz'
     elif xx[i] % 3 == 0:
-        yy='Fizz'
+        yy[i]='Fizz'
     elif xx[i] % 5 == 0:
-        yy='Buzz'
+        yy[i]='Buzz'
     else:
-      yy =xx
+      yy[i] =xx[i]
 # Printing the results in a data frame
 res = pd.DataFrame({"x": xx, "result": yy})
 res
